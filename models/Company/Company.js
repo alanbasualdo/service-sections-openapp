@@ -4,9 +4,11 @@ const companySchema = new Schema(
   {
     name: {
       type: String,
+      required: true,
     },
     cuit: {
       type: Number,
+      required: true,
     },
   },
   {

@@ -1,24 +1,24 @@
-const Company = require("../models/Company/Company");
+const Brand = require("../models/Company/Brand");
 
-const postCompany = async (req, res) => {
+const postBrand = async (req, res) => {
   try {
-    const { cuit, name } = req.body;
-    const company = await Company.findOne({ name });
-    if (company) {
+    const { company, name } = req.body;
+    const brand = await Brand.findOne({ name });
+    if (brand) {
       return res.status(400).json({
         success: false,
-        message: "La compañía ya se encuentra registrada",
+        message: "La marca ya se encuentra registrada",
       });
     }
-    const newCompany = new Company({
-      cuit,
+    const newBrand = new Brand({
+      company,
       name,
     });
-    await newCompany.save();
+    await newBrand.save();
     res.status(201).json({
       success: true,
-      message: "Compañía creada exitosamente",
-      newCompany,
+      message: "Marca creada exitosamente",
+      newBrand,
     });
   } catch (error) {
     console.error(error.message);
@@ -29,13 +29,13 @@ const postCompany = async (req, res) => {
   }
 };
 
-const getCompanies = async (req, res) => {
+const getBrands = async (req, res) => {
   try {
-    const companies = await Company.find();
+    const brands = await Brand.find().populate("company");
     res.status(200).json({
       success: true,
-      message: "Lista de compañías obtenida exitosamente",
-      companies,
+      message: "Lista de marcas obtenida exitosamente",
+      brands,
     });
   } catch (error) {
     console.error(error.message);
@@ -46,13 +46,13 @@ const getCompanies = async (req, res) => {
   }
 };
 
-const deleteCompany = async (req, res) => {
+const deleteBrand = async (req, res) => {
   try {
     const { id } = req.params;
-    await Company.findByIdAndDelete(id);
+    await Brand.findByIdAndDelete(id);
     res.status(200).json({
       success: true,
-      message: "Compañía eliminada exitosamente",
+      message: "Marca eliminada exitosamente",
     });
   } catch (error) {
     console.error(error.message);
@@ -64,7 +64,7 @@ const deleteCompany = async (req, res) => {
 };
 
 module.exports = {
-  postCompany,
-  getCompanies,
-  deleteCompany,
+  postBrand,
+  getBrands,
+  deleteBrand,
 };
