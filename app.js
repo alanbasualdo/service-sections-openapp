@@ -24,6 +24,8 @@ app.use("/companies", require("./routes/company/companies"));
 app.use("/brands", require("./routes/company/brands"));
 app.use("/cities", require("./routes/company/cities"));
 app.use("/branches", require("./routes/company/branches"));
+app.use("/areas", require("./routes/company/areas"));
+app.use("/subareas", require("./routes/company/subareas"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("*", (req, res) => {

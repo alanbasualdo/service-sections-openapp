@@ -6,8 +6,8 @@ const subareaSchema = new Schema(
       type: String,
     },
     area: {
-      type: Schema.Types.ObjectId,
-      ref: "Area",
+      type: String,
+      required: true,
     },
   },
   {
