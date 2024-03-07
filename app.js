@@ -23,6 +23,7 @@ app.use(express.json());
 app.use("/companies", require("./routes/company/companies"));
 app.use("/brands", require("./routes/company/brands"));
 app.use("/cities", require("./routes/company/cities"));
+app.use("/branches", require("./routes/company/branches"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("*", (req, res) => {

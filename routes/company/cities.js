@@ -2,10 +2,10 @@ const { postCity, getCities, deleteCity } = require("../../controllers/cities");
 
 const router = require("express").Router();
 
-router.post("/post", postCity);
+router.post("/post-city", postCity);
 
-router.get("/get", getCities);
+router.get("/get-cities", getCities);
 
-router.delete("/delete/:id", deleteCity);
+router.delete("/delete-city/:id", deleteCity);
 
 module.exports = router;
