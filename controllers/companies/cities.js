@@ -1,4 +1,4 @@
-const City = require("../models/Company/City");
+const City = require("../../models/Company/City");
 
 const postCity = async (req, res) => {
   try {

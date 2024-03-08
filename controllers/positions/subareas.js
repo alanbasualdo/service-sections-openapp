@@ -1,4 +1,4 @@
-const Subarea = require("../models/Company/Subarea");
+const Subarea = require("../../models/Position/Subarea");
 
 const postSubarea = async (req, res) => {
   try {

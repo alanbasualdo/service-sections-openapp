@@ -2,7 +2,7 @@ const {
   postCompany,
   getCompanies,
   deleteCompany,
-} = require("../../controllers/companies");
+} = require("../../controllers/companies/companies");
 
 const router = require("express").Router();
 

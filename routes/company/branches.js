@@ -2,7 +2,7 @@ const {
   postBranch,
   getBranches,
   deleteBranch,
-} = require("../../controllers/branches");
+} = require("../../controllers/companies/branches");
 
 const router = require("express").Router();
 

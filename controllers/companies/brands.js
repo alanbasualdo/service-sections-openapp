@@ -1,23 +1,24 @@
-const Area = require("../models/Company/Area");
+const Brand = require("../../models/Company/Brand");
 
-const postArea = async (req, res) => {
+const postBrand = async (req, res) => {
   try {
-    const { name } = req.body;
-    const area = await Area.findOne({ name });
-    if (area) {
+    const { company, name } = req.body;
+    const brand = await Brand.findOne({ name });
+    if (brand) {
       return res.status(400).json({
         success: false,
-        message: "El área ya se encuentra registrada",
+        message: "La marca ya se encuentra registrada",
       });
     }
-    const newArea = new Area({
+    const newBrand = new Brand({
+      company,
       name,
     });
-    await newArea.save();
+    await newBrand.save();
     res.status(201).json({
       success: true,
-      message: "Área creada exitosamente",
-      newArea,
+      message: "Marca creada exitosamente",
+      newBrand,
     });
   } catch (error) {
     console.error(error.message);
@@ -28,13 +29,13 @@ const postArea = async (req, res) => {
   }
 };
 
-const getAreas = async (req, res) => {
+const getBrands = async (req, res) => {
   try {
-    const areas = await Area.find();
+    const brands = await Brand.find();
     res.status(200).json({
       success: true,
-      message: "Lista de áreas obtenida exitosamente",
-      areas,
+      message: "Lista de marcas obtenida exitosamente",
+      brands,
     });
   } catch (error) {
     console.error(error.message);
@@ -45,13 +46,13 @@ const getAreas = async (req, res) => {
   }
 };
 
-const deleteArea = async (req, res) => {
+const deleteBrand = async (req, res) => {
   try {
     const { id } = req.params;
-    await Area.findByIdAndDelete(id);
+    await Brand.findByIdAndDelete(id);
     res.status(200).json({
       success: true,
-      message: "Área eliminada exitosamente",
+      message: "Marca eliminada exitosamente",
     });
   } catch (error) {
     console.error(error.message);
@@ -63,7 +64,7 @@ const deleteArea = async (req, res) => {
 };
 
 module.exports = {
-  postArea,
-  getAreas,
-  deleteArea,
+  postBrand,
+  getBrands,
+  deleteBrand,
 };

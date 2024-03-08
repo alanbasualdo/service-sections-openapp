@@ -1,4 +1,4 @@
-const { postArea, getAreas, deleteArea } = require("../../controllers/areas");
+const { postArea, getAreas, deleteArea } = require("../../controllers/positions/areas");
 
 const router = require("express").Router();
 

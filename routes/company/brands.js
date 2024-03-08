@@ -2,7 +2,7 @@ const {
   postBrand,
   getBrands,
   deleteBrand,
-} = require("../../controllers/brands");
+} = require("../../controllers/companies/brands");
 
 const router = require("express").Router();
 

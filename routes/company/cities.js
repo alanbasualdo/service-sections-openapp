@@ -1,4 +1,4 @@
-const { postCity, getCities, deleteCity } = require("../../controllers/cities");
+const { postCity, getCities, deleteCity } = require("../../controllers/companies/cities");
 
 const router = require("express").Router();
 

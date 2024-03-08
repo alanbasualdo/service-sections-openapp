@@ -2,7 +2,7 @@ const {
   postSubarea,
   getSubareas,
   deleteSubareas,
-} = require("../../controllers/subareas");
+} = require("../../controllers/positions/subareas");
 
 const router = require("express").Router();
 

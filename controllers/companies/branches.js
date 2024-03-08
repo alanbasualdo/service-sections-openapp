@@ -1,24 +1,26 @@
-const Brand = require("../models/Company/Brand");
+const Branch = require("../../models/Company/Branch");
 
-const postBrand = async (req, res) => {
+const postBranch = async (req, res) => {
   try {
-    const { company, name } = req.body;
-    const brand = await Brand.findOne({ name });
-    if (brand) {
+    const { city, province, brand, company } = req.body;
+    const branch = await Branch.findOne({ city, province, brand, company });
+    if (branch) {
       return res.status(400).json({
         success: false,
-        message: "La marca ya se encuentra registrada",
+        message: "La sucursal ya se encuentra registrada",
       });
     }
-    const newBrand = new Brand({
+    const newBranch = new Branch({
+      city,
+      province,
+      brand,
       company,
-      name,
     });
-    await newBrand.save();
+    await newBranch.save();
     res.status(201).json({
       success: true,
-      message: "Marca creada exitosamente",
-      newBrand,
+      message: "Sucursal creada exitosamente",
+      newBranch,
     });
   } catch (error) {
     console.error(error.message);
@@ -29,13 +31,13 @@ const postBrand = async (req, res) => {
   }
 };
 
-const getBrands = async (req, res) => {
+const getBranches = async (req, res) => {
   try {
-    const brands = await Brand.find();
+    const branches = await Branch.find();
     res.status(200).json({
       success: true,
-      message: "Lista de marcas obtenida exitosamente",
-      brands,
+      message: "Lista de sucursales obtenida exitosamente",
+      branches,
     });
   } catch (error) {
     console.error(error.message);
@@ -46,13 +48,13 @@ const getBrands = async (req, res) => {
   }
 };
 
-const deleteBrand = async (req, res) => {
+const deleteBranch = async (req, res) => {
   try {
     const { id } = req.params;
-    await Brand.findByIdAndDelete(id);
+    await Branch.findByIdAndDelete(id);
     res.status(200).json({
       success: true,
-      message: "Marca eliminada exitosamente",
+      message: "Sucursal eliminada exitosamente",
     });
   } catch (error) {
     console.error(error.message);
@@ -64,7 +66,7 @@ const deleteBrand = async (req, res) => {
 };
 
 module.exports = {
-  postBrand,
-  getBrands,
-  deleteBrand,
+  postBranch,
+  getBranches,
+  deleteBranch,
 };

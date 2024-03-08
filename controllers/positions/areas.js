@@ -1,24 +1,23 @@
-const Company = require("../models/Company/Company");
+const Area = require("../../models/Position/Area");
 
-const postCompany = async (req, res) => {
+const postArea = async (req, res) => {
   try {
-    const { cuit, name } = req.body;
-    const company = await Company.findOne({ name });
-    if (company) {
+    const { name } = req.body;
+    const area = await Area.findOne({ name });
+    if (area) {
       return res.status(400).json({
         success: false,
-        message: "La compañía ya se encuentra registrada",
+        message: "El área ya se encuentra registrada",
       });
     }
-    const newCompany = new Company({
-      cuit,
+    const newArea = new Area({
       name,
     });
-    await newCompany.save();
+    await newArea.save();
     res.status(201).json({
       success: true,
-      message: "Compañía creada exitosamente",
-      newCompany,
+      message: "Área creada exitosamente",
+      newArea,
     });
   } catch (error) {
     console.error(error.message);
@@ -29,13 +28,13 @@ const postCompany = async (req, res) => {
   }
 };
 
-const getCompanies = async (req, res) => {
+const getAreas = async (req, res) => {
   try {
-    const companies = await Company.find();
+    const areas = await Area.find();
     res.status(200).json({
       success: true,
-      message: "Lista de compañías obtenida exitosamente",
-      companies,
+      message: "Lista de áreas obtenida exitosamente",
+      areas,
     });
   } catch (error) {
     console.error(error.message);
@@ -46,13 +45,13 @@ const getCompanies = async (req, res) => {
   }
 };
 
-const deleteCompany = async (req, res) => {
+const deleteArea = async (req, res) => {
   try {
     const { id } = req.params;
-    await Company.findByIdAndDelete(id);
+    await Area.findByIdAndDelete(id);
     res.status(200).json({
       success: true,
-      message: "Compañía eliminada exitosamente",
+      message: "Área eliminada exitosamente",
     });
   } catch (error) {
     console.error(error.message);
@@ -64,7 +63,7 @@ const deleteCompany = async (req, res) => {
 };
 
 module.exports = {
-  postCompany,
-  getCompanies,
-  deleteCompany,
+  postArea,
+  getAreas,
+  deleteArea,
 };
