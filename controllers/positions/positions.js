@@ -63,8 +63,36 @@ const deletePosition = async (req, res) => {
   }
 };
 
+const putPosition = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { level } = req.body;
+    const position = await Position.findById(id);
+    if (!position) {
+      return res.status(404).json({
+        success: false,
+        message: "No se encontró el puesto",
+      });
+    }
+    position.level = level;
+    await position.save();
+    res.status(200).json({
+      success: true,
+      message: "Puesto actualizado exitosamente",
+      position,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({
+      success: false,
+      message: `Error: ${error.message}`,
+    });
+  }
+};
+
 module.exports = {
   postPosition,
   getPositions,
   deletePosition,
+  putPosition,
 };
