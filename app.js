@@ -29,6 +29,8 @@ app.use("/areas", require("./routes/positions/areas"));
 app.use("/subareas", require("./routes/positions/subareas"));
 app.use("/positions", require("./routes/positions/positions"));
 
+app.use("/pcs", require("./routes/pcs/processors"));
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("*", (req, res) => {
