@@ -30,6 +30,10 @@ app.use("/subareas", require("./routes/positions/subareas"));
 app.use("/positions", require("./routes/positions/positions"));
 
 app.use("/pcs", require("./routes/pcs/processors"));
+app.use("/pcs", require("./routes/pcs/ram"));
+/* app.use("/pcs", require("./routes/pcs/disks"));
+app.use("/pcs", require("./routes/pcs/types"));
+app.use("/pcs", require("./routes/pcs/pcs")); */
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
