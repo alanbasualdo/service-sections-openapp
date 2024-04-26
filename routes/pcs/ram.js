@@ -1,15 +1,11 @@
-const {
-  postMemorie,
-  getMemories,
-  deleteMemorie,
-} = require("../../controllers/pcs/ram");
+const { postRam, getRam, deleteRam } = require("../../controllers/pcs/ram");
 
 const router = require("express").Router();
 
-router.post("/post-ram", postMemorie);
+router.post("/post-ram", postRam);
 
-router.get("/get-rams", getMemories);
+router.get("/get-rams", getRam);
 
-router.delete("/delete-ram/:id", deleteMemorie);
+router.delete("/delete-ram/:id", deleteRam);
 
 module.exports = router;
