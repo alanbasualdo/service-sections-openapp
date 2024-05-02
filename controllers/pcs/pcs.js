@@ -2,28 +2,45 @@ const PCs = require("../../models/PCs/PCs");
 
 const postPC = async (req, res) => {
   try {
-    const { brand, model, disk, ram, processor } = req.body;
-    const pc = await PCs.findOne({
-      brand,
-      model: { $regex: new RegExp(model, "i") },
+    let {
+      type,
+      model,
       disk,
       ram,
       processor,
+      serialNumber,
+      graphicCard,
+      employee,
+    } = req.body;
+
+    if (model === "") {
+      model = null;
+    }
+
+    const pc = await PCs.findOne({
+      serialNumber,
     });
+
     if (pc) {
       return res.status(400).json({
         success: false,
         message: "La computadora ya se encuentra registrada",
       });
     }
+
     const newPC = new PCs({
-      brand,
+      type,
       model,
       disk,
       ram,
       processor,
+      serialNumber,
+      graphicCard,
+      employee,
     });
+
     await newPC.save();
+
     res.status(201).json({
       success: true,
       message: "Computadora creada exitosamente",
@@ -40,7 +57,12 @@ const postPC = async (req, res) => {
 
 const getPCs = async (req, res) => {
   try {
-    const pcs = await PCs.find();
+    const pcs = await PCs.find()
+      .populate("model")
+      .populate("disk")
+      .populate("ram")
+      .populate("processor")
+      .populate("employee");
     res.status(200).json({
       success: true,
       message: "Lista de computadoras obtenida exitosamente",

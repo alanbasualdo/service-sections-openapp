@@ -2,10 +2,10 @@ const { postPC, getPCs, deletePC } = require("../../controllers/pcs/pcs");
 
 const router = require("express").Router();
 
-router.post("/post-pc", postPC);
+router.post("/post-computer", postPC);
 
-router.get("/get-pcs", getPCs);
+router.get("/get-computers", getPCs);
 
-router.delete("/delete-pc/:id", deletePC);
+router.delete("/delete-computer/:id", deletePC);
 
 module.exports = router;

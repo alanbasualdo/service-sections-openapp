@@ -33,7 +33,7 @@ app.use("/pcs", require("./routes/pcs/processors"));
 app.use("/pcs", require("./routes/pcs/ram"));
 app.use("/pcs", require("./routes/pcs/disks"));
 app.use("/pcs", require("./routes/pcs/models"));
-app.use("/pcs", require("./routes/pcs/pcs"));
+app.use("/pcs", require("./routes/pcs/computers"));
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
